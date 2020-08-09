@@ -3,6 +3,9 @@
 <HEAD>
 
 <TITLE>Your Title Here</TITLE>
+<meta charset="utf-8">
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
 </HEAD>
 
@@ -105,6 +108,46 @@ yuseok.ko@amkor.com</a>.
   </div>
 </div>
 
+<hr>
+
+<header>
+  box-sizing 과 float를 이용하여 content를 좌/우 배치
+</header>
+
+<ul>
+  <li>
+    box-sizing: content-box (default):
+    폭과 높이가 요소의 내용에 의해 적용된다.
+  </li>
+  <li>
+    box-sizing: border-box:
+    폭과 높이가 요소의 전체 파트들(내용, padding, border)을 포함한다.
+  </li>
+  <li>
+    float: left:
+    절대 폭이 50%:50% 나눔어짐으로 써 하단의 폭이 위쪽을 채우는 역할을 하게됨 <br>
+    만약 50%:60%로 설정하면 하단 폭이 10%를 초고함으로 위쪽에 붙이 못함
+  </li>
+</ul>
+<p>
+
+</p>
+
+<style>
+  div.box{
+    box-sizing: border-box;
+    width: 50%;
+    border: 5px solid red;
+    float: left;
+  }
+</style>
+
+  <div class="container" style="width: 100%;border: 2px solid black;">
+    <div class="box">This div occupies the left half</div>
+    <div class="box">This div occupies the right half</div>
+    <div style="clear:both;"></div>
+  </div>
+
 <HR>
 
 <header>div vs span: 단지 구역구분을 위한 목적임</header>
@@ -127,16 +170,80 @@ Your browser does not support the audio element.
 </audio>
 
 <hr>
-<div style="margin-top: 10px;">
-  <a href="index.html"><img src="Image/1.jpg" width="30%"></a>
-  <img src="Image/2.jpg" width="30%">
-  <img src="Image/3.jpg" width="30%">
-</div>
 
-<div style="margin-top: 10px;">
-  <img src="Image/4.jpg" width="30%">
-  <img src="Image/6.jpg" width="30%">
-  <img src="Image/7.jpg" width="30%">
+<style>
+.row,.column {
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content:"";
+  clear: both;
+  display:table;
+}
+
+/* img{
+  border-radius: 5%;
+} */
+
+</style>
+
+<header>
+  이미지 배치
+  <ul>
+    <li>object-fit : cover: 가로, 세로를 동일하게 지정하고, 이미지 보이는 부분을 조정함 </li>
+  </ul>
+</header>
+
+<div class="row">
+  <!-- <div class="column">
+    <a href="index.html"><img src="Image/1.jpg" style="width:50%;height:50%;object-fit:cover;"></a>
+  </div>
+  <div class="column">
+    <img src="Image/2.jpg" alt="Forest" style="width:50%;height:50%;object-fit:cover;">
+  </div>
+  <div class="column">
+    <img src="Image/3.jpg" alt="Mountains" style="width:50%;height:50%;object-fit:cover;">
+  </div> -->
+
+  <div class="column">
+    <a href="index.html"><img src="Image/1.jpg" style="width:100%;height:50%;object-fit:cover;"></a>
+  </div>
+  <div class="column">
+    <img src="Image/2.jpg" alt="Forest" style="width:100%;height:50%;object-fit:cover;">
+  </div>
+  <div class="column">
+    <img src="Image/3.jpg" alt="Mountains" style="width:100%;height:50%;object-fit:cover;">
+  </div>
+
+  <!-- <div class="column">
+    <img src="Image/1.jpg" alt="Forest" style="width:100%;">
+  </div>
+  <div class="column">
+    <img src="Image/2.jpg" alt="Forest" style="width:100%;">
+  </div>
+  <div class="column">
+    <img src="Image/3.jpg" alt="Mountains" style="width:100%;">
+  </div> -->
+
+  <div class="column">
+    <img src="Image/img_snow.jpg" alt="Snow" style="width:100%;height:50%;object-fit:cover;">
+  </div>
+  <div class="column">
+    <img src="Image/img_forest.jpg" alt="Forest" style="width:100%;height:50%;object-fit:cover;">
+  </div>
+  <div class="column">
+    <img src="Image/img_mountains.jpg" alt="Mountains" style="width:100%;height:50%;object-fit:cover;">
+  </div>
+
 </div>
 
 <hr>
@@ -144,6 +251,50 @@ Your browser does not support the audio element.
 <video width="400" height="300" controls>
   <source src="movie1.mp4" type="video/mp4">
 </video>
+
+<hr>
+
+<header>
+  clear: both 역할: float:left 영향을 해제해 좀
+</header>
+<br>
+
+<img src="w3css.gif" width="100" height="132" style="float: left;">
+<p>This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</p>
+<p class="clear" style="clear: both;">This is also some text. This is also some text. This is also some text. This is also some text.
+  This is also some text. This is also some text.</p>
+
+<hr>
+
+<!-- <style>
+
+  .container {
+    width:100%;
+  }
+  .column {
+    width:19.5%;
+    display:inline-block;
+    vertical-align:top;
+  }
+  .column img {
+    width:100%;
+    padding:3px;
+    vertical-align:top;
+  }
+
+</style>
+<div class="container">
+  <div class="column">
+    <img src="Image/1.jpg">
+    <img src="Image/2.jpg">
+    <img src="Image/3.jpg">
+  </div>
+  <div class="column">
+    <img src="Image/img_snow.jpg">
+    <img src="Image/img_forest.jpg">
+    <img src="Image/img_mountains.jpg">
+  </div>
+</div> -->
 
 </BODY>
 
